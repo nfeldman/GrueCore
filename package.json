@@ -1,0 +1,23 @@
+{
+  "name": "@nsfdev/grue-core",
+  "version": "1.0.0",
+  "description": "A small library of utilities for (mostly) front end development. These were the core components of my original Grue JavaScript library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "utilities",
+    "event",
+    "emitter",
+    "events",
+    "history",
+    "buffer",
+    "mixins"
+  ],
+  "author": "Noah Feldman",
+  "license": "MIT",
+  "dependencies": {
+    "setimmediate": "^1.0.2"
+  }
+}
