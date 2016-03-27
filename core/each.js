@@ -1,5 +1,5 @@
 /**
- * @module Grue/core/EventEmitter
+ * @module Grue/core/each
  * @author Noah Feldman <nfeldman@nsfdev.com>
  * @copyright 2012-2015
  */
