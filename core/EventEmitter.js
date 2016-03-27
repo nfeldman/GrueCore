@@ -1,7 +1,7 @@
 /**
  * @module Grue/core/EventEmitter
  * @author Noah Feldman <nfeldman@nsfdev.com>
- * @copyright 2012-2015
+ * @copyright 2012-2016
  */
 
 var randStr = require('./randStr'),
@@ -16,7 +16,7 @@ require('setimmediate');
 
 /**
  * @constructs EventEmitter
- * 
+ *
  * Provides an easy way to setup communication between objects.
  * Requires IE9+ or a modern browser
  */
@@ -31,8 +31,8 @@ function EventEmitter () {
 }
 
 /**
- * Call a callback when an event fires. 
- * 
+ * Call a callback when an event fires.
+ *
  * @param  {string}   event    Name of the event to listen on.
  * @param  {Function} callback function to call when the event fires
  * @param  {Object}   [thisObj=this]  call the callback with thisObj as its `this`
@@ -81,7 +81,7 @@ EventEmitter.prototype.on = function (event, callback, thisObj) {
     this.__off_funcs.push(off);
 
     events.push(fn);
-    
+
     off.event = event;
     return off;
 };
@@ -89,7 +89,7 @@ EventEmitter.prototype.on = function (event, callback, thisObj) {
 
 /**
  * Like EventEmitter#on, but only executed once
- * 
+ *
  * @param {string}   event     the type of event to listen for, e.g. 'change'
  * @param {Function} callback  function to call when the event fires
  * @param {Object}   [thisObj=this] context in which to call the callback
@@ -118,14 +118,14 @@ EventEmitter.prototype.once = function (event, callback, thisObj) {
 EventEmitter.prototype.one = EventEmitter.prototype.once;
 
 /**
- * Manually remove one or more listeners/handlers. 
- * 
- * @param  {string|[string, fn]} [handle] If called with no arguments, 
- *                               all handlers will be removed. If called 
- *                               with just an event name, all handlers for 
- *                               that event will be removed. If called with 
- *                               an array containing a string and a specific 
- *                               handler, that handler will be removed for 
+ * Manually remove one or more listeners/handlers.
+ *
+ * @param  {string|[string, fn]} [handle] If called with no arguments,
+ *                               all handlers will be removed. If called
+ *                               with just an event name, all handlers for
+ *                               that event will be removed. If called with
+ *                               an array containing a string and a specific
+ *                               handler, that handler will be removed for
  *                               that event named by the supplied string.
  * @return {[type]}        [description]
  */
@@ -342,7 +342,7 @@ var connections = null,
  * notify zero or more additional subscribers.
  *
  * @private
- * 
+ *
  * @param  {Object} object Any JS object. In theory, you can use this
  *                         with host objects in modern desktop browsers,
  *                         but you probably shouldn't.
@@ -383,7 +383,7 @@ function attach (object, name) {"use strict";
 /**
  * A shortcut to unhook all listeners from a given function or
  * to restore all wrapped functions in a given object
- * 
+ *
  * @param  {Object} object
  * @param  {string} name   The name of a function property of object
  * @return {undefined}
@@ -418,7 +418,7 @@ function connect (position, object, name, callback, thisObj) {
 
     !connections[id][name] && (connections[id][name] = Object.create(null));
     list = connections[id][name][position] || (connections[id][name][position] = []);
-    
+
     if (thisObj === undefined)
         thisObj = object;
 
@@ -447,7 +447,7 @@ function disconnect (position, id, name, fn) {
 /**
  * Call an arbitrary function with the arguments intended for the
  * function property of some object, before calling that function property.
- * 
+ *
  * @param  {Object}   object   Any JS object
  * @param  {string}   name     Property name of a function property of `object`
  * @param  {Function} callback Function to call before calling the original function
@@ -461,7 +461,7 @@ EventEmitter.before = function (object, name, callback, thisObj) {
 /**
  * Call an arbitrary function with the arguments intended for the
  * function property of some object, after calling that function property.
- * 
+ *
  * @param  {Object}   object   Any JS object
  * @param  {string}   name     Property name of a function property of `object`
  * @param  {Function} callback Function to call after calling the original function
@@ -475,7 +475,7 @@ EventEmitter.after = function (object, name, callback, thisObj) {
 /**
  * Call an arbitrary function with the arguments intended for the
  * function property of some object, before and after calling that function property.
- * 
+ *
  * @param  {Object}   object   Any JS object
  * @param  {string}   name     Property name of a function property of `object`
  * @param  {Function} callback Function to call around the original function

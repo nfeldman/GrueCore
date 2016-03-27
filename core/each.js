@@ -1,7 +1,7 @@
 /**
  * @module Grue/core/each
  * @author Noah Feldman <nfeldman@nsfdev.com>
- * @copyright 2012-2015
+ * @copyright 2012-2016
  */
 
 module.exports = each;

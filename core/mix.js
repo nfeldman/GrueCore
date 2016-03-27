@@ -1,8 +1,9 @@
 /**
  * @module Grue/core/mix
  * @author Noah Feldman <nfeldman@nsfdev.com>
- * @copyright 2012-2015
+ * @copyright 2012-2016
  */
+module.exports = mix;
 
 var hasOwn  = {}.hasOwnProperty,
     toStr   = {}.toString;
@@ -30,17 +31,17 @@ function clone (source) {
 
 /**
  * Mixes or merges or clones
- * @param  {boolean} [deep=false] when properties are arrays or objects, should 
+ * @param  {boolean} [deep=false] when properties are arrays or objects, should
  *                                we clone the thing pointed at?
  * @param  {Object} source   Object from which properties are copied
- * @param  {Object} [target={}|[]]  Object or Array to which properties (or 
+ * @param  {Object} [target={}|[]]  Object or Array to which properties (or
  *                                  values) are copied, if undefined, an empty
- *                                  Object or Array (depending on the type of 
+ *                                  Object or Array (depending on the type of
  *                                  the source) is used
- * @param  {boolean} [preserve=false] whether to preserve properties of the 
- *                                    target if a property of the same name 
+ * @param  {boolean} [preserve=false] whether to preserve properties of the
+ *                                    target if a property of the same name
  *                                    exists in the source
- *                                    
+ *
  * @return {Object} target
  */
 function mix (deep, source, target, preserve) {
@@ -101,5 +102,3 @@ function mix (deep, source, target, preserve) {
 
     return target;
 }
-
-module.exports = mix;
