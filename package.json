@@ -6,18 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "utilities",
-    "event",
-    "emitter",
-    "events",
-    "history",
-    "buffer",
-    "mixins"
-  ],
   "author": "Noah Feldman",
   "license": "MIT",
   "dependencies": {
-    "setimmediate": "^1.0.2"
+    "setimmediate": "^1.0.4"
   }
 }

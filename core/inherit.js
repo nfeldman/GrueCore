@@ -7,8 +7,7 @@ var mix = require('./mix');
 
 /**
  * Provides implementation inheritance while preserving constructor semantics.
- * Adds a reference to super as __ctor__ on the subConstructor as a static
- * property. Uses Object.create.
+ * 
  * @param {Function} SubC   The constructor for the subtype, if it is a named
  *                          function, the intermediary constructor will share
  *                          its name.
@@ -19,5 +18,4 @@ module.exports = function inherit (SubC, SuperC) {
     mix(SubC.prototype, subProto);
     SubC.prototype = subProto;
     SubC.prototype.constructor = SubC;
-    SubC.__ctor__ = SuperC;
 };

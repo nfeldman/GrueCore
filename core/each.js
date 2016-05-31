@@ -6,14 +6,13 @@
 
 module.exports = each;
 
-
 /**
  * Similar to [].forEach, but ducktypes and works on objects.
  * With objects, it will only iterate over enumerable own properties.
- * 
- * @param  {Object|Array|?}   it   Can be a plain JS object, array, or thing  looks array like 
+ *
+ * @param  {Object|Array|?}   it   Can be a plain JS object, array, or thing  looks array like
  *                                 (e.g. collections in the DOM)
- * @param  {Function(value, key, index)}   callback   Called once for each value. Return 
+ * @param  {Function(value, key, index)}   callback   Called once for each value. Return
  *                                                    `each.breaker` to break out of the iteration.
  * @param  {Object}   [thisObj]   If supplied, becomes the `this` of the callback
  * @return {undefined}
