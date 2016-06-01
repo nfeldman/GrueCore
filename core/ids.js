@@ -24,7 +24,7 @@ exports.id = function () {
 // The uri safe version generates 12 character strings. The non uri safe version base64 encodes those strings.
 
 exports.uriSafeSequentialRandomId = function () {
-    return randStr(6, (Date.now() - START)).toString(36);
+    return randStr(6, (Date.now() - START).toString(36)).slice(2);
 };
 
 exports.sequentialRandomId = function () {
