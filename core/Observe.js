@@ -242,20 +242,20 @@ function defineObservedProperty (prop, original, observers) {
     if (hasOwn(this, prop))
         return;
 
-    var id, observed,  observeArrayProp;
+    var id, observed, observeProp;
 
     if (typeof original[prop] == 'object') { // JS collections
+        id = original[grueId] || original[obsId];
+        observed = regisitry[id];
         if (Array.isArray(original[prop])) {
-            id = original[grueId] || original[obsId];
-            observed = regisitry[id];
-            observeArrayProp = function () {
+            observeProp = function () {
                 observed[prop] = observe(original[prop], function (name, detail) {
                     var msg = copy(detail);
                     msg.name = prop +  (detail.name ? '.' + detail.name : '[' + detail.index + ']');
                     notify(observers, prop, name, msg);
                 });
             };
-            observeArrayProp();
+            observeProp();
 
             Object.defineProperty(this, prop, {
                 get: function () {
@@ -264,7 +264,7 @@ function defineObservedProperty (prop, original, observers) {
                 set: function (value) {
                     var prev = original[prop];
                     original[prop] = value;
-                    observeArrayProp();
+                    observeProp();
                     notify(observers, prop, 'change', {
                         type: 'arrayProperty',
                         name: prop,
@@ -275,8 +275,8 @@ function defineObservedProperty (prop, original, observers) {
                 configurable: true
             });
         } else {
-            Object.defineProperty(this, prop, {
-                value: observe(original[prop], function (name, detail) {
+            observeProp = function () {
+                observed[prop] = observe(original[prop], function (name, detail) {
                     var event = prop + '.' + detail.name,
                         msg = {
                             type: 'objectProperty',
@@ -286,9 +286,25 @@ function defineObservedProperty (prop, original, observers) {
                         };
                     notify(observers, prop, 'change', msg);
                     notify(observers, event, 'change', msg, true);
-                }),
-                configurable: true,
-                writable: true
+                });
+            }
+            observeProp();
+            Object.defineProperty(this, prop, {
+                get: function () {
+                    return observed[prop];
+                },
+                set: function (value) {
+                    var prev = original[prop];
+                    original[prop] = value;
+                    observeProp();
+                    notify(observers, prop, 'change', {
+                        type: 'objectProperty',
+                        name: prop,
+                        prev: prev,
+                        curr: value
+                    });
+                },
+                configurable: true
             });
         }
     } else if (typeof original[prop] == 'function') { // shrug
